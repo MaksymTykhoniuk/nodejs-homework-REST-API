@@ -1,6 +1,27 @@
 const Joi = require("joi");
+const { Schema } = require("mongoose");
 
-const contactSchema = Joi.object({
+const mongooseContactSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Set name for contact"],
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { versionKey: false, timestamps: true }
+);
+
+const joiContactSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email({
     minDomainSegments: 2,
@@ -13,4 +34,12 @@ const contactSchema = Joi.object({
     .required(),
 });
 
-module.exports = contactSchema;
+const joiToggleFavouriteContactSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
+
+module.exports = {
+  mongooseContactSchema,
+  joiContactSchema,
+  joiToggleFavouriteContactSchema,
+};
