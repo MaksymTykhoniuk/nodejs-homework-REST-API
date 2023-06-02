@@ -10,6 +10,7 @@ mongoose
   .connect(DB_HOST)
   .then(() => {
     app.listen(3000);
+    console.log("serv popushen");
   })
   .catch((error) => {
     console.log(error.message);
