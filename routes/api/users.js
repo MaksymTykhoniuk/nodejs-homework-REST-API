@@ -22,4 +22,15 @@ update subscription "starter", "pro", "business"
 */
 router.patch("/", tokenValidation, ctrl.updateSubscription);
 
+/*
+email verification
+*/
+router.get("/verify/:verificationToken", ctrl.verifyEmail);
+
+/*
+resend verification email
+*/
+
+router.post("/verify", ctrl.resendEmail);
+
 module.exports = router;

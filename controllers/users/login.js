@@ -44,6 +44,15 @@ const login = async (req, res, next) => {
       return;
     }
 
+    if (!user.verify) {
+      res.status(401).json({
+        status: "error",
+        code: 401,
+        message: "Email is not verified",
+      });
+      return;
+    }
+
     const payload = {
       id: user._id,
     };
