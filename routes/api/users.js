@@ -4,6 +4,7 @@ const { tokenValidation, upload } = require("../../middlewares");
 
 const { users: ctrl } = require("../../controllers");
 
+
 const router = express.Router();
 
 router.post("/signup", ctrl.signup);

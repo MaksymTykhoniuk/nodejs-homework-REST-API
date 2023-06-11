@@ -74,6 +74,7 @@ const { sendEmail } = require("../../helpers");
 
 const { joiUserSignupSchema } = require("../../validation/users");
 const User = require("../../models/users");
+const { EMAIL } = process.env;
 
 const signup = async (req, res, next) => {
   try {
@@ -116,6 +117,7 @@ const signup = async (req, res, next) => {
 
     const mail = {
       to: email,
+      from: EMAIL,
       subject: "Email verification",
       html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${verificationToken}">Click</a>`,
     };
