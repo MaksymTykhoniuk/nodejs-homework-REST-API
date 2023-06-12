@@ -4,6 +4,7 @@ const { tokenValidation, upload } = require("../../middlewares");
 
 const { users: ctrl } = require("../../controllers");
 
+
 const router = express.Router();
 
 router.post("/signup", ctrl.signup);
@@ -21,5 +22,16 @@ router.patch(
 update subscription "starter", "pro", "business"
 */
 router.patch("/", tokenValidation, ctrl.updateSubscription);
+
+/*
+email verification
+*/
+router.get("/verify/:verificationToken", ctrl.verifyEmail);
+
+/*
+resend verification email
+*/
+
+router.post("/verify", ctrl.resendEmail);
 
 module.exports = router;
